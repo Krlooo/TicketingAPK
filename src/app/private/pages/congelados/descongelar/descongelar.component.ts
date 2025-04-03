@@ -58,7 +58,7 @@ export class DescongelarComponent implements OnInit {
   updateDateInQueryParams() {
     const formattedDate = this.formatDate(this.date);
     this.router.navigate([], {
-      queryParams: { fc_envase: formattedDate },
+      queryParams: { fc_envase: formattedDate, producto: this.product },
       queryParamsHandling: 'merge'
     });
   }

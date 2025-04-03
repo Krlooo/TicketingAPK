@@ -81,7 +81,8 @@ export class MesaComponent implements OnInit {
     this.router.navigate([], {
       queryParams: {
         fc_envase: formattedExpirationDate,
-        fc_descongelacion: formattedDefrostDate
+        fc_descongelacion: formattedDefrostDate,
+        producto: this.product
       },
       queryParamsHandling: 'merge'
     });

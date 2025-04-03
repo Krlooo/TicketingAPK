@@ -8,7 +8,7 @@ export class ApiService {
 
 
     constructor(private loadingCtrl: LoadingController) { }
-    API_URL = "http://192.168.2.101:8081"
+    API_URL = "http://localhost:8081"
 
 
 
