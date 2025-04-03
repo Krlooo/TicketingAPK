@@ -1,36 +1,52 @@
 import { Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { Tab1Page } from '../tab1/tab1.page';
+import { Tab2Page } from '../tab2/tab2.page';
+import { Tab3Page } from '../tab3/tab3.page';
+import { DescongelarComponent } from '@app/private/pages/congelados/descongelar/descongelar.component';
+import { TupperComponent } from '@app/private/pages/congelados/tupper/tupper.component';
+import { MesaComponent } from '@app/private/pages/congelados/mesa/mesa.component';
 
 export const routes: Routes = [
   {
-    path: 'tabs',
+    path: 'home',
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
-        loadComponent: () =>
-          import('../tab1/tab1.page').then((m) => m.Tab1Page),
+        path: 'etiquetas',
+        component: Tab1Page,
       },
       {
-        path: 'tab2',
-        loadComponent: () =>
-          import('../tab2/tab2.page').then((m) => m.Tab2Page),
+        path: 'escanear',
+        component: Tab2Page,
       },
       {
-        path: 'tab3',
-        loadComponent: () =>
-          import('../tab3/tab3.page').then((m) => m.Tab3Page),
+        path: 'congelados/descongelar',
+        component: DescongelarComponent,
+      },
+      {
+        path: 'congelados/tupper',
+        component: TupperComponent,
+      },
+      {
+        path: 'congelados/mesa',
+        component: MesaComponent,
+      },
+      {
+        path: 'productos',
+        component: Tab3Page,
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/home/etiquetas',
         pathMatch: 'full',
       },
     ],
   },
+
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/home/etiquetas',
     pathMatch: 'full',
   },
 ];

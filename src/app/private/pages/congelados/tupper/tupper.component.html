@@ -1,0 +1,111 @@
+<ion-content class="ion-padding-top">
+  <div class="flex justify-around p-2">
+    <ion-title>Tupper</ion-title>
+    <ion-button id="open-modal" expand="block" [disabled]="!this.product" (click)="generatePreview()">
+      <ion-icon slot="icon-only" name="eye-outline"></ion-icon>
+    </ion-button>
+  </div>
+
+  <ion-select class="ion-padding" [(ngModel)]="product" (ngModelChange)="newTupper()" label="Producto"
+    placeholder="Selecciona un producto" helperText="Selecciona un producto congelado"
+    errorText="Este campo es obligatorio">
+    @for (result of results; track $index) {
+    <ion-select-option value="{{result.PRODUCTO}}">{{result.PRODUCTO}}</ion-select-option>
+    }
+  </ion-select>
+
+  <ion-modal trigger="open-modal" [initialBreakpoint]="0.5" [breakpoints]="[0, 0.5]">
+    <ng-template>
+      <ion-img src="{{img}}" alt="Vista previa de descongelación"></ion-img>
+    </ng-template>
+  </ion-modal>
+
+  <div class="flex w-full justify-center gap-4 mb-4 p-4">
+    <ion-button [color]="currentDateType === 'expiration' ? 'primary' : 'dark'" (click)="toggleDateType('expiration')">
+      Fecha de caducidad
+    </ion-button>
+    <ion-button [color]="currentDateType === 'defrost' ? 'primary' : 'dark'" (click)="toggleDateType('defrost')">
+      Fecha de descongelación
+    </ion-button>
+  </div>
+
+  <ion-picker>
+    <ion-picker-column (ionChange)="dayChange($event)"
+      [value]="currentDateType === 'expiration' ? expirationDate.getDate() : defrostDate.getDate()">
+      <ion-picker-column-option value="" disabled="true">Día</ion-picker-column-option>
+      @for (day of days; track $index) {
+      <ion-picker-column-option [value]="day">{{ day }}</ion-picker-column-option>
+      }
+    </ion-picker-column>
+
+    <ion-picker-column (ionChange)="monthChange($event)"
+      [value]="currentDateType === 'expiration' ? expirationDate.getMonth() + 1 : defrostDate.getMonth() + 1">
+      <ion-picker-column-option value="" disabled="true">Mes</ion-picker-column-option>
+      @for (month of months; track $index) {
+      <ion-picker-column-option [value]="month.value">{{ month.value }}</ion-picker-column-option>
+      }
+    </ion-picker-column>
+
+    <ion-picker-column (ionChange)="yearChange($event)"
+      [value]="currentDateType === 'expiration' ? expirationDate.getFullYear() : defrostDate.getFullYear()">
+      <ion-picker-column-option value="" disabled="true">Año</ion-picker-column-option>
+      @for (year of years; track $index) {
+      <ion-picker-column-option [value]="year">{{ year }}</ion-picker-column-option>
+      }
+    </ion-picker-column>
+  </ion-picker>
+
+  @if (currentDateType === 'defrost') {
+  <ion-picker>
+    <ion-picker-column (ionChange)="hourChange($event)" [value]="defrostHour">
+      <ion-picker-column-option value="" disabled="true">Hora</ion-picker-column-option>
+      @for (hour of hours; track $index) {
+      <ion-picker-column-option [value]="hour">{{ hour.toString().padStart(2, '0') }}</ion-picker-column-option>
+      }
+    </ion-picker-column>
+
+    <p class="font-bold text-xl flex items-center">:</p>
+
+    <ion-picker-column (ionChange)="minuteChange($event)" [value]="defrostMinute">
+      <ion-picker-column-option value="" disabled="true">Minuto</ion-picker-column-option>
+      @for (minute of minutes; track $index) {
+      <ion-picker-column-option [value]="minute">{{ minute.toString().padStart(2, '0') }}</ion-picker-column-option>
+      }
+    </ion-picker-column>
+  </ion-picker>
+  }
+
+  <div class="p-4 rounded-lg mt-4">
+    <div class="flex justify-center gap-4 mb-2">
+      <span class="font-bold">Fecha de caducidad:</span>
+      <span>{{ formatDate(expirationDate) }}</span>
+    </div>
+    <div class="flex justify-center gap-4">
+      <span class="font-bold">Fecha de descongelación:</span>
+      @if (currentDateType === 'defrost') {
+      <span>{{ formatDate(defrostDate) }} - {{ defrostHour.toString().padStart(2, '0') }}:{{
+        defrostMinute.toString().padStart(2, '0') }}</span>
+      } @else {
+      <span>{{ formatDate(defrostDate) }}</span>
+      }
+    </div>
+  </div>
+
+  <div class="flex flex-col  items-center gap-4 p-4 rounded-lg shadow-md mt-4">
+    <ion-title>Cantidad a imprimir</ion-title>
+    <div class="flex items-center gap-4 text-lg">
+      <ion-button (click)="qt = qt > 1 ? qt - 1 : qt">
+        <ion-icon name="remove-outline" />
+      </ion-button>
+      <ion-text>{{qt}}</ion-text>
+      <ion-button (click)="qt = qt < 10 ? qt + 1 : qt">
+        <ion-icon name="add-outline" />
+      </ion-button>
+    </div>
+  </div>
+
+  <ion-button id="printAlert" (click)="goPrint()" class="ion-padding" expand="full" [disabled]="!this.product">
+    Imprimir
+  </ion-button>
+
+  <ion-toast trigger="printAlert" [duration]="3000" position="bottom" message="¡Se ha enviado a imprimir!">

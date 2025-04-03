@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>APPCC</ion-title>
+    <div slot="end" class="api-status-indicator">
+      <span [ngClass]="{
+        'active': status === 'active',
+        'inactive': status === 'inactive',
+      }">
+        Servidor de impresión:
+        @if(status == 'active'){
+        🟢
+        }@else {
+        🔴
+        }
+      </span>
+
+    </div>
+  </ion-toolbar>
+</ion-header>
