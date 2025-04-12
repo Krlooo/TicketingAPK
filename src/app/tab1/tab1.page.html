@@ -3,22 +3,103 @@
     <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Desliza para actualizar">
     </ion-refresher-content>
   </ion-refresher>
-  <ion-title>Etiquetas</ion-title>
-  <div class="">
-    <ion-button [routerLink]="['/home/congelados/descongelar']">
-      <ion-label>Descongelacion
+  <div class="h-full flex flex-col gap-y-10">
+    <div>
+      <h1 class="font-bold text-4xl text-center">Congelados</h1>
+      <div class="grid grid-cols-2 px-3">
+        <ion-button [routerLink]="['/home/congelados/descongelar']">
+          <ion-label>Descongelacion
 
-      </ion-label>
-    </ion-button>
-    <ion-button [routerLink]="['/home/congelados/tupper']">
-      <ion-label>Tupper
+          </ion-label>
+        </ion-button>
+        <ion-button [routerLink]="['/home/congelados/tupper']">
+          <ion-label>Tupper
 
-      </ion-label>
-    </ion-button>
-    <ion-button [routerLink]="['/home/congelados/mesa']">
-      <ion-label>Mesa
+          </ion-label>
+        </ion-button>
+        <ion-button [routerLink]="['/home/congelados/mesa']">
+          <ion-label>Mesa
 
-      </ion-label>
-    </ion-button>
+          </ion-label>
+        </ion-button>
+        <ion-button [routerLink]="['/home/congelados/cierre']">
+          <ion-label>Cierre
+
+          </ion-label>
+        </ion-button>
+      </div>
+    </div>
+    <div>
+      <div>
+
+
+        <h1 class="font-bold text-4xl text-center">Refrigerados</h1>
+        <div class="grid grid-cols-3">
+          <ion-button [routerLink]="['/home/congelados/descongelar']">
+            <ion-label>Descongelacion
+
+            </ion-label>
+          </ion-button>
+          <ion-button [routerLink]="['/home/congelados/tupper']">
+            <ion-label>Tupper
+
+            </ion-label>
+          </ion-button>
+          <ion-button [routerLink]="['/home/congelados/mesa']">
+            <ion-label>Mesa
+
+            </ion-label>
+          </ion-button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div>
+
+
+        <h1 class="font-bold text-4xl text-center">Secos</h1>
+        <div class="grid grid-cols-3">
+          <ion-button [routerLink]="['/home/congelados/descongelar']">
+            <ion-label>Descongelacion
+
+            </ion-label>
+          </ion-button>
+          <ion-button [routerLink]="['/home/congelados/tupper']">
+            <ion-label>Tupper
+
+            </ion-label>
+          </ion-button>
+          <ion-button [routerLink]="['/home/congelados/mesa']">
+            <ion-label>Mesa
+
+            </ion-label>
+          </ion-button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div>
+
+
+        <h1 class="font-bold text-4xl text-center">Postres</h1>
+        <div class="grid grid-cols-3">
+          <ion-button [routerLink]="['/home/congelados/descongelar']">
+            <ion-label>Descongelacion
+
+            </ion-label>
+          </ion-button>
+          <ion-button [routerLink]="['/home/congelados/tupper']">
+            <ion-label>Tupper
+
+            </ion-label>
+          </ion-button>
+          <ion-button [routerLink]="['/home/congelados/mesa']">
+            <ion-label>Mesa
+
+            </ion-label>
+          </ion-button>
+        </div>
+      </div>
+    </div>
   </div>
 </ion-content>

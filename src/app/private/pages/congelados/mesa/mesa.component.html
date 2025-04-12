@@ -1,7 +1,7 @@
 <ion-content class="ion-padding-top">
   <div class="flex justify-around p-2">
-    <ion-title>Mesa</ion-title>
-    <ion-button id="open-modal" expand="block" [disabled]="!this.product" (click)="generatePreview()">
+    <h1 class="text-center font-bold text-4xl">Mesa</h1>
+    <ion-button id="open-descmesa-modal" expand="block" [disabled]="!this.product" (click)="generatePreview()">
       <ion-icon slot="icon-only" name="eye-outline"></ion-icon>
     </ion-button>
   </div>
@@ -14,7 +14,7 @@
     }
   </ion-select>
 
-  <ion-modal trigger="open-modal" [initialBreakpoint]="0.5" [breakpoints]="[0, 0.5]">
+  <ion-modal [backdropDismiss]="true" trigger="open-descmesa-modal" [initialBreakpoint]="0.5" [breakpoints]="[0, 0.5]">
     <ng-template>
       <ion-img src="{{img}}" alt="Vista previa de descongelación"></ion-img>
     </ng-template>
@@ -92,7 +92,6 @@
   </div>
 
   <div class="flex flex-col  items-center gap-4 p-4 rounded-lg shadow-md mt-4">
-    <ion-title>Cantidad a imprimir</ion-title>
     <div class="flex items-center gap-4 text-lg">
       <ion-button (click)="qt = qt > 1 ? qt - 1 : qt">
         <ion-icon name="remove-outline" />

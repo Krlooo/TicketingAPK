@@ -1,4 +1,57 @@
-<ion-content>
+<!-- tab2.page.html -->
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Escanear Código QR</ion-title>
+    </ion-toolbar>
+</ion-header>
 
-    <ion-button expand="block" (click)="startScan()">Start Scan</ion-button>
+<ion-content>
+    <!-- Mostrar cargando durante el escaneo -->
+    @if (isLoading) {
+    <ion-card>
+        <ion-card-content class="ion-text-center">
+            <ion-label>Procesando...</ion-label>
+        </ion-card-content>
+    </ion-card>
+    }
+
+    <!-- Mostrar el resultado después del escaneo -->
+    <ion-card *ngIf="hasScanned && !isLoading">
+        <ion-card-header>
+            <ion-card-title>Resultado del Escaneo</ion-card-title>
+            <p> {{scannedResult}}</p>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-button expand="block" (click)="resetScan()">
+                Escanear otro código
+            </ion-button>
+        </ion-card-content>
+    </ion-card>
+
+    <!-- Contenido principal cuando no hay escaneo -->
+    <ion-card *ngIf="!hasScanned && !isLoading">
+        <ion-card-header>
+            <ion-card-title>Escáner de Códigos QR</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-button expand="block" (click)="startScan()">
+                Escanear código
+            </ion-button>
+
+            <ion-button *ngIf="isTorchAvailable" expand="block" (click)="toggleTorch()">
+                Alternar linterna
+            </ion-button>
+        </ion-card-content>
+    </ion-card>
+
+    <!-- Elementos para escaneo en web -->
+    <div class="web-scanner-container">
+        <video #video width="100%" height="300" style="display: none;"></video>
+        <div #square class="scan-square"></div>
+        <input #fileInput type="file" accept="image/*" capture="environment" style="display: none;"
+            (change)="handleFileInput($event)">
+    </div>
 </ion-content>

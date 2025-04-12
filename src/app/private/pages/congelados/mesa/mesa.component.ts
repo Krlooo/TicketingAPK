@@ -161,6 +161,7 @@ export class MesaComponent implements OnInit {
     const formattedExpirationDate = this.formatDate(this.expirationDate);
     console.log("GENERANDO PREVIEW");
     this.img = await this.api.previewMesaCong(this.product, formattedExpirationDate, formattedDefrostDate);
+    console.log(this.img)
     this.img = "data:image/jpeg;base64," + this.img.data.image;
   }
 

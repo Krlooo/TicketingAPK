@@ -6,6 +6,7 @@ import { Tab3Page } from '../tab3/tab3.page';
 import { DescongelarComponent } from '@app/private/pages/congelados/descongelar/descongelar.component';
 import { TupperComponent } from '@app/private/pages/congelados/tupper/tupper.component';
 import { MesaComponent } from '@app/private/pages/congelados/mesa/mesa.component';
+import { CierreComponent } from '@app/private/pages/congelados/cierre/cierre.component';
 
 export const routes: Routes = [
   {
@@ -19,6 +20,10 @@ export const routes: Routes = [
       {
         path: 'escanear',
         component: Tab2Page,
+      },
+      {
+        path: 'congelados/cierre',
+        component: CierreComponent,
       },
       {
         path: 'congelados/descongelar',
